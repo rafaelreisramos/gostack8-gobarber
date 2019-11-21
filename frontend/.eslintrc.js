@@ -40,6 +40,7 @@ module.exports = {
     ],
     'import/prefer-default-export': 'off',
     'no-param-reassign': 'off',
+    'no-underscore-dangle': 'off',
     'no-console': ['error', { allow: ['tron'] }],
   },
   settings: {
