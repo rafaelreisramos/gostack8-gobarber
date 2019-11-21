@@ -23,6 +23,9 @@ module.exports = {
   plugins: [
     'react',
     'prettier',
+    'import',
+    'jsx-a11y',
+    'react-hooks',
   ],
   rules: {
     'prettier/prettier': 'error',
@@ -42,6 +45,8 @@ module.exports = {
     'no-param-reassign': 'off',
     'no-underscore-dangle': 'off',
     camelcase: 'off',
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
     'no-console': ['error', { allow: ['tron'] }],
   },
   settings: {
