@@ -41,6 +41,7 @@ module.exports = {
         allow: ['tron']
       }
     ],
+    camelcase: 'off',
   },
   settings: {
     'import/resolver': {
