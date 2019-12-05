@@ -21,7 +21,10 @@ module.exports = {
   },
   plugins: [
     'react',
+    'react-hooks',
     'prettier',
+    'jsx-a11y',
+    'import'
   ],
   rules: {
     'prettier/prettier': 'error',
