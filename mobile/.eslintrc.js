@@ -10,6 +10,7 @@ module.exports = {
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
+    __DEV__: true,
   },
   parser: 'babel-eslint',
   parserOptions: {
@@ -33,7 +34,13 @@ module.exports = {
       {
         extensions: ['.jsx', '.js']
       }
-    ]
+    ],
+    'no-console': [
+      'error',
+      {
+        allow: ['tron']
+      }
+    ],
   },
   settings: {
     'import/resolver': {
