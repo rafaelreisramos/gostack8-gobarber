@@ -22,7 +22,7 @@ function Dashboard({ isFocused }) {
     if (isFocused) {
       loadAppointments();
     }
-  }, [isFocused]);
+  }, [isFocused, appointments]);
 
   async function handleCancel(id) {
     const response = await api.delete(`appointments/${id}`);
