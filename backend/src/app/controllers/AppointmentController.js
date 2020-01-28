@@ -45,7 +45,7 @@ class AppointmentController {
     });
 
     if (!(await schema.isValid(req.body))) {
-      res.status(400).json({ error: 'Validation fails.' });
+      return res.status(400).json({ error: 'Validation fails.' });
     }
 
     const { provider_id, date } = req.body;
@@ -78,7 +78,7 @@ class AppointmentController {
     const hourStart = startOfHour(parseISO(date));
 
     if (isBefore(hourStart, new Date())) {
-      res.status(400).json({ error: 'Past dates are nor permitted.' });
+      return res.status(400).json({ error: 'Past dates are nor permitted.' });
     }
 
     /**
