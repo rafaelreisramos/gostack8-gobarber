@@ -7,10 +7,12 @@ import Youch from 'youch';
 import path from 'path';
 import cors from 'cors';
 import helmet from 'helmet';
+import RateLimit from 'express-rate-limit';
 import routes from './routes';
 
 import './database';
 import sentryConfig from './config/sentry';
+import rateLimitConfig from './config/rateLimit';
 
 class App {
   constructor() {
@@ -32,6 +34,10 @@ class App {
       '/files',
       express.static(path.resolve(__dirname, '..', 'tmp', 'uploads'))
     );
+
+    if (process.env.NODE_ENV !== 'development') {
+      this.server.use(new RateLimit(rateLimitConfig));
+    }
   }
 
   routes() {
