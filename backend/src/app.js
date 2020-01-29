@@ -6,10 +6,13 @@ import * as Sentry from '@sentry/node';
 import Youch from 'youch';
 import path from 'path';
 import cors from 'cors';
+import helmet from 'helmet';
+import RateLimit from 'express-rate-limit';
 import routes from './routes';
 
 import './database';
 import sentryConfig from './config/sentry';
+import rateLimitConfig from './config/rateLimit';
 
 class App {
   constructor() {
@@ -25,11 +28,16 @@ class App {
   middlewares() {
     this.server.use(Sentry.Handlers.requestHandler());
     this.server.use(cors());
+    this.server.use(helmet());
     this.server.use(express.json());
     this.server.use(
       '/files',
       express.static(path.resolve(__dirname, '..', 'tmp', 'uploads'))
     );
+
+    if (process.env.NODE_ENV !== 'development') {
+      this.server.use(new RateLimit(rateLimitConfig));
+    }
   }
 
   routes() {
